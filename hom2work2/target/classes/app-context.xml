@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="duke" class="bazalytskyi.hom2work2.Juggler">
+		<constructor-arg value="15" />
+	</bean>
+
+	<bean id="poeticDuke" class="bazalytskyi.hom2work2.PoeticJuggler">
+		<constructor-arg value="15" />
+		<constructor-arg>
+			<bean class="bazalytskyi.hom2work2.Shevchenko" />
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="theStage" class="bazalytskyi.hom2work2.Stage"
+		factory-method="getInstance" />
+	<bean id="kenny" class="bazalytskyi.hom2work2.Instrumentalist">
+		<property name="song" value="Jingle Bells" />
+		<property name="instrument" ref="saxophone" />
+
+	</bean>
+	
+	<bean id = "piano" class="bazalytskyi.hom2work2.Piano"/>
+	
+
+	<bean id="saxophone" class="bazalytskyi.hom2work2.Saxophone" />
+	<bean id="hank" class="bazalytskyi.hom2work2.OneManBand">
+		<property name="instruments">
+			<list>
+				<ref bean="saxophone" />
+				<ref bean="piano" />
+			</list>
+		</property>
+	</bean>
+
+
+
+</beans>
