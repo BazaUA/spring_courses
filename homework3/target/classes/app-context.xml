@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<context:annotation-config />
+
+	<context:component-scan base-package="bazalytskyi.hom2work2">
+		<context:include-filter type="assignable"
+			expression="bazalytskyi.hom2work2.Instrument" />
+	</context:component-scan>
+
+	
+
+	<context:component-scan base-package="bazalytskyi.hom2work2">
+		<context:include-filter type="assignable"
+			expression="bazalytskyi.hom2work2.Poem" />
+	</context:component-scan>
+
+
+	<bean id="duke" class="bazalytskyi.hom2work2.Juggler">
+		<constructor-arg value="15" />
+	</bean>
+
+	<bean id="poeticDuke" class="bazalytskyi.hom2work2.PoeticJuggler">
+		<constructor-arg value="15" />
+
+	</bean>
+
+	<bean id="theStage" class="bazalytskyi.hom2work2.Stage"
+		factory-method="getInstance" />
+	<bean id="kenny" class="bazalytskyi.hom2work2.Instrumentalist">
+		<property name="song" value="Jingle Bells" />
+	</bean>
+
+	<bean id="hank" class="bazalytskyi.hom2work2.OneManBand">
+		
+	</bean>
+
+
+
+</beans>
