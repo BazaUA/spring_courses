@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	<context:annotation-config />
+
+	<context:component-scan base-package="bazalytskyi.homework4">
+		<context:include-filter type="assignable"
+			expression="bazalytskyi.homework4.Instrument" />
+	</context:component-scan>
+
+
+
+	<context:component-scan base-package="bazalytskyi.homework4">
+		<context:include-filter type="assignable"
+			expression="bazalytskyi.homework4.Poem" />
+	</context:component-scan>
+
+
+	<bean id="duke" class="bazalytskyi.homework4.Juggler">
+		<constructor-arg value="15" />
+	</bean>
+
+	
+	
+	<bean id="poeticDuke" class="bazalytskyi.homework4.PoeticJuggler">
+		<constructor-arg value="15" />
+
+	</bean>
+
+	<bean id="theStage" class="bazalytskyi.homework4.Stage"
+		factory-method="getInstance" />
+	<bean id="kenny" class="bazalytskyi.homework4.Instrumentalist">
+		<property name="song" value="Jingle Bells" />
+	</bean>
+
+	<bean id="hank" class="bazalytskyi.homework4.OneManBand">
+
+
+
+	</bean>
+
+	<bean id="cleaners" class="bazalytskyi.homework4.AOP.Cleaners" />
+	
+	<bean id="singer" class="bazalytskyi.homework4.SingingJuggler">
+		
+	</bean>
+	
+	<bean id="kidnapper" class="bazalytskyi.homework4.Aspect.KidnapperSongs"/>
+		
+	
+	<aop:aspectj-autoproxy />
+	
+	<aop:config>
+		<aop:aspect ref="cleaners">
+			<aop:pointcut
+				expression="execution(* bazalytskyi.homework4.Performer.perform(..))"
+				id="performance" />
+			<aop:before pointcut-ref="performance" method="cleanBeforePerfomance" />
+			<aop:before pointcut-ref="performance" method="goingOut" />
+			<aop:after-returning pointcut-ref="performance"
+				method="cleanAfterPerfomance" />
+			<aop:after-throwing pointcut-ref="performance"
+				method="giveMoney" />
+		</aop:aspect>
+
+		<aop:aspect>
+			<aop:declare-parents types-matching="bazalytskyi.homework4.Performer+"
+				implement-interface="bazalytskyi.homework4.AOP.Worker" default-impl="bazalytskyi.homework4.AOP.Collector" />
+		</aop:aspect>
+
+
+
+	</aop:config>
+
+
+
+
+
+</beans>
